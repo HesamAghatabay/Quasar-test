@@ -1,8 +1,7 @@
 <template>
-<q-page>
-  <h2>IndexPage</h2>
-  <q-btn color="primary" icon="mail" label="On Left" />
-</q-page>
+  <q-page padding>
+    <h4>IndexPage</h4>
+  </q-page>
 </template>
 
 <script setup>
