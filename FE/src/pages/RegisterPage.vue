@@ -61,6 +61,7 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { Notify } from 'quasar'
+import { api } from 'src/boot/axios'
 
 
 const name = ref('')
@@ -70,11 +71,10 @@ const confirm = ref('')
 const isPwd = ref(true)
 const isPwdconfirm = ref(true)
 const router = useRouter()
-import { api } from 'src/boot/axios'
 
 
 function register() {
-  if(password.value===confirm.value){
+  if(password.value === confirm.value){
     api.post('/api/register',{
       name : name.value,
       email : email.value,
