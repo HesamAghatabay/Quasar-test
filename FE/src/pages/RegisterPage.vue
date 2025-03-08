@@ -63,7 +63,6 @@ import { useRouter } from 'vue-router'
 import { Notify } from 'quasar'
 import { api } from 'src/boot/axios'
 
-
 const name = ref('')
 const email = ref('')
 const password = ref('')
@@ -72,21 +71,35 @@ const isPwd = ref(true)
 const isPwdconfirm = ref(true)
 const router = useRouter()
 
-
 function register() {
-  if(password.value === confirm.value){
-    api.post('/api/register',{
-      name : name.value,
-      email : email.value,
-      password : password.value,
-    }).then(()=>{
-      Notify.create({
+  if (password.value === confirm.value) {
+    api
+      .post('/api/register', {
+        name: name.value,
+        email: email.value,
+        password: password.value,
+      })
+      .then((r) => {
+        // console.log(r.data.status)
+        if (r.data.status == 1) {
+          Notify.create({
             type: 'positive',
             message: 'user register success',
           })
           router.push('/login')
+        }
+      })
+      .catch(() => {
+        Notify.create({
+          type: 'negative',
+          message: 'user register wrong',
+        })
+      })
+  } else {
+    Notify.create({
+      type: 'negative',
+      message: 'password confirmation wrong',
     })
   }
 }
-
 </script>
