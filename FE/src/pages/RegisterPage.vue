@@ -89,10 +89,10 @@ function register() {
           router.push('/login')
         }
       })
-      .catch(() => {
+      .catch((e) => {
         Notify.create({
           type: 'negative',
-          message: 'user register wrong',
+          message: e.message,
         })
       })
   } else {

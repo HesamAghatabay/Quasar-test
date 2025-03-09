@@ -34,7 +34,7 @@
       class="full-width q-ma-lg"
       rounded
       glossy
-      label="Register"
+      label="Login"
       @click="login"
     />
   </q-page>
@@ -47,7 +47,7 @@ import { Notify } from 'quasar'
 
 import { useRouter } from 'vue-router'
 
-const router = useRouter
+const router = useRouter()
 const isPwd = ref('true')
 const eamil = ref('')
 const password = ref('')
@@ -73,9 +73,14 @@ function login() {
           type: 'positive',
           message: 'user login success',
         })
-        router.push('/profile')
-
+          router.push('/profile')
       }
+    })
+    .catch((e) => {
+      Notify.create({
+        type: 'negative',
+        message: e.message,
+      })
     })
 }
 </script>
